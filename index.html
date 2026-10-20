@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#121110">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Fluxo Digital">
+<meta property="og:title" content="Teste 72h · Fluxo Digital">
+<meta property="og:description" content="Viramos seu cliente por 72 horas e mostramos, em vídeo, onde sua empresa perde vendas no atendimento. Grátis para empresas a partir de R$ 50 mil/mês.">
+<meta property="og:image" content="media/teste72h-capa.jpg">
+<link rel="icon" type="image/webp" href="assets/logo-fluxo.webp">
+<link rel="preload" href="fonts/general-sans-600.woff2" as="font" type="font/woff2" crossorigin>
+<style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Fluxo Teste 72h</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="A Fluxo vira seu cliente por 72 horas, mede seu atendimento em tempo, script e follow-up e mostra em vídeo onde a venda se perde. Grátis para empresas a partir de R$ 50 mil/mês.">
+<style>
+/* Layout: "o cronômetro" — página escura da Fluxo com relógios ao vivo como assinatura; faixas claras para as ferramentas interativas */
+@font-face{font-family:'General Sans';src:url(fonts/general-sans-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'General Sans';src:url(fonts/general-sans-500.woff2) format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'General Sans';src:url(fonts/general-sans-600.woff2) format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url(fonts/jetbrains-mono-500.woff2) format('woff2');font-weight:500;font-display:swap}
+:root{
+  --ink:#121110; --ink-2:#1c1a18; --ink-3:#2a2724;
+  --paper:#f4f1ea; --paper-2:#eae5da; --paper-3:#fbf9f4;
+  --on-ink:#f4f1ea; --on-ink-2:#a8a095; --on-paper:#1a1816; --on-paper-2:#5c564e;
+  --gold:#c8a15b; --gold-deep:#7a5c24; --gold-hi:#d9b878;
+  --bad:#d0573f; --mid:#b8862d; --good:#5b8650;
+  --line-ink:rgba(244,241,234,.12); --line-paper:rgba(26,24,22,.14);
+  --sans:'General Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --fs-hero:clamp(2.6rem,6.4vw,5.6rem); --fs-h2:clamp(2rem,4.4vw,3.6rem); --fs-h3:clamp(1.2rem,2vw,1.5rem);
+  --fs-lead:clamp(1.08rem,1.6vw,1.3rem); --fs-body:1.0625rem; --fs-small:.9rem; --fs-label:.74rem;
+  --max:1160px; --r:6px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--ink);color:var(--on-ink);font-family:var(--sans);font-size:var(--fs-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+h2{font-size:var(--fs-h2)} h3{font-size:var(--fs-h3);letter-spacing:-.02em;line-height:1.2}
+p{margin:0;text-wrap:pretty}
+a{color:inherit}
+.wrap{max-width:var(--max);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{padding-block:clamp(4rem,10vw,7.5rem)}
+.band.paper{background:var(--paper);color:var(--on-paper);color-scheme:light}
+.label{font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.paper .label{color:var(--gold-deep)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--on-ink-2)} .paper .muted{color:var(--on-paper-2)}
+.lead{font-size:var(--fs-lead);line-height:1.5;max-width:40rem}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.4rem;padding:.9rem 1.5rem;border-radius:var(--r);font:600 1.02rem/1.2 var(--sans);text-decoration:none;cursor:pointer;border:0;transition:background-color .2s,transform .2s}
+.btn:active{transform:translateY(1px)}
+.btn-gold{background:var(--gold);color:var(--ink)} .btn-gold:hover{background:var(--gold-hi)}
+.btn-line{background:transparent;color:inherit;border:1.5px solid currentColor;opacity:.9} .btn-line:hover{opacity:1}
+.btn-ink{background:var(--ink);color:var(--paper)} .btn-ink:hover{background:var(--ink-3)}
+.btn svg{flex:none}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(18,17,16,.9);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line-ink)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:4.2rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:600;letter-spacing:-.02em;text-decoration:none}
+.brand img{width:32px;height:32px}
+.waitchip{display:flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.78rem;color:var(--on-ink-2);border:1px solid var(--line-ink);border-radius:30px;padding:.42rem .8rem;white-space:nowrap}
+.waitchip b{color:var(--bad);font-weight:500;font-variant-numeric:tabular-nums}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--bad);animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.top .btn{min-height:2.7rem;padding:.55rem 1rem;font-size:.92rem}
+@media (max-width:760px){.waitchip{display:none}}
+@media (max-width:420px){.brand span{display:none}}
+
+/* hero */
+.hero{position:relative;padding-block:clamp(3.5rem,8vw,6rem) clamp(3.5rem,8vw,5.5rem);overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.9}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:clamp(2rem,5vw,4.5rem);align-items:end}
+.hero h1{font-size:var(--fs-hero);letter-spacing:-.045em;margin-top:1.1rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .lead{margin-top:1.5rem;color:var(--on-ink-2)}
+.hero .lead b{color:var(--on-ink);font-weight:500}
+.ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.micro{margin-top:1rem;font-size:var(--fs-small);color:var(--on-ink-2)}
+.clock{border:1px solid var(--line-ink);border-radius:14px;background:rgba(28,26,24,.7);padding:1.6rem 1.6rem 1.4rem}
+.clock .label{color:var(--on-ink-2)}
+.clock .big{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums;font-size:clamp(3rem,7vw,5.2rem);letter-spacing:-.04em;line-height:1;margin:.7rem 0 .3rem;color:var(--on-ink)}
+.clock .big.late{color:var(--bad)}
+.clock p{font-size:var(--fs-small);color:var(--on-ink-2)}
+.clock .bubble{margin-top:1.2rem;background:var(--ink-3);border-radius:16px 16px 16px 4px;padding:.8rem 1rem;font-size:.98rem;max-width:22rem}
+.clock .bubble small{display:block;font-family:var(--mono);font-size:.72rem;color:var(--on-ink-2);margin-top:.3rem}
+.clock .status{display:flex;align-items:center;gap:.5rem;margin-top:.8rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;color:var(--bad)}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+
+/* proof strip */
+.strip{border-block:1px solid var(--line-ink)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px}
+.strip div{padding:1.4rem 1rem 1.4rem 0}
+.strip b{display:block;font-size:1.6rem;font-weight:600;letter-spacing:-.03em}
+.strip span{font-size:var(--fs-small);color:var(--on-ink-2)}
+@media (max-width:760px){.strip .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* desafio */
+.dare{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+.dare h2 em{font-style:normal;color:var(--gold)}
+.dare .lead{margin-top:1.2rem;color:var(--on-ink-2)}
+.stopwatch{border:1.5px solid var(--gold);border-radius:16px;padding:1.6rem;background:var(--ink-2)}
+.stopwatch .row{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.stopwatch .t{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:clamp(2.6rem,6vw,4rem);font-weight:500;letter-spacing:-.04em;line-height:1}
+.scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:1.3rem}
+.scale div{border-radius:6px;background:var(--ink-3);padding:.55rem .6rem;font-size:.8rem;color:var(--on-ink-2);transition:background .3s,color .3s}
+.scale div b{display:block;font-size:1.15rem;color:var(--on-ink);font-weight:600}
+.scale div.on{background:var(--gold);color:var(--ink)} .scale div.on b{color:var(--ink)}
+.stopwatch .msg{margin-top:1.1rem;font-size:.98rem;min-height:3rem}
+.stopwatch .actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+@media (max-width:860px){.dare{grid-template-columns:1fr}}
+
+/* quiz */
+.quiz{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(1.5rem,4vw,3rem);margin-top:2.6rem;align-items:start}
+.qcol{display:flex;flex-direction:column;gap:1rem}
+.fator{background:var(--paper-3);border:1px solid var(--line-paper);border-radius:12px;padding:1.2rem 1.3rem}
+.fator .hd{display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem}
+.fator .ic{width:40px;height:40px;border-radius:10px;background:var(--ink);display:flex;align-items:center;justify-content:center;flex:none}
+.fator h3{font-size:1.15rem}
+.fator .val{margin-left:auto;font-family:var(--mono);font-size:.9rem;color:var(--gold-deep);white-space:nowrap}
+.opts{display:flex;flex-wrap:wrap;gap:.45rem}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opt span{display:inline-block;border:1.5px solid var(--line-paper);border-radius:30px;padding:.45rem .85rem;font-size:.92rem;background:var(--paper);cursor:pointer;transition:background .15s,border-color .15s}
+.opt input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.opt input:focus-visible+span{outline:2px solid var(--gold-deep);outline-offset:2px}
+.yn{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 1rem;align-items:center;padding:.55rem 0;border-top:1px solid var(--line-paper);font-size:.98rem}
+.yn:first-of-type{border-top:0}
+.seg{display:inline-flex;border:1.5px solid var(--line-paper);border-radius:30px;overflow:hidden}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.seg span{display:block;padding:.38rem .9rem;font-size:.88rem;cursor:pointer}
+.seg input:checked+span{background:var(--ink);color:var(--paper)}
+.seg input:focus-visible+span{outline:2px solid var(--gold-deep);outline-offset:-2px}
+.result{position:sticky;top:calc(env(safe-area-inset-top,0px) + 5.4rem);background:var(--ink);color:var(--on-ink);border-radius:16px;padding:1.6rem}
+.result svg{display:block;width:100%;max-width:300px;margin:0 auto}
+.result .leit{display:inline-block;margin-top:.4rem;padding:.3rem .7rem;border-radius:4px;font-weight:600;font-size:.9rem;color:#fff}
+.result .bars{display:flex;flex-direction:column;gap:.55rem;margin-top:1.2rem}
+.bar{display:grid;grid-template-columns:5.8rem minmax(0,1fr) 2.2rem;gap:.6rem;align-items:center;font-size:.86rem}
+.bar i{display:block;height:8px;border-radius:4px;background:var(--ink-3);overflow:hidden}
+.bar i b{display:block;height:100%;width:0;transition:width .35s,background .35s}
+.bar em{font-style:normal;font-family:var(--mono);text-align:right}
+.leak{margin-top:1.3rem;padding-top:1.2rem;border-top:1px solid var(--line-ink)}
+.leak .in{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;margin-top:.7rem}
+.leak label{font-size:.78rem;color:var(--on-ink-2);display:flex;flex-direction:column;gap:.3rem}
+.leak input{background:var(--ink-3);border:1px solid var(--line-ink);border-radius:6px;color:var(--on-ink);font:500 1rem var(--mono);padding:.55rem .6rem;width:100%;min-width:0}
+.leak .out{margin-top:.9rem;font-size:1.25rem;font-weight:600;letter-spacing:-.02em}
+.leak small{display:block;font-size:.76rem;color:var(--on-ink-2);margin-top:.3rem;line-height:1.4}
+.result .btn{width:100%;margin-top:1.3rem}
+.result .fine{font-size:.78rem;color:var(--on-ink-2);margin-top:.7rem;text-align:center}
+@media (max-width:900px){.quiz{grid-template-columns:1fr}.result{position:static}}
+
+/* processo */
+.proc{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(2rem,5vw,4rem);margin-top:2.8rem;align-items:start}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.steps li{display:grid;grid-template-columns:5.5rem minmax(0,1fr);gap:1rem;padding:1.4rem 0;border-top:1px solid var(--line-ink)}
+.steps li:last-child{border-bottom:1px solid var(--line-ink)}
+.steps .when{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;color:var(--gold);padding-top:.3rem}
+.steps h3{margin-bottom:.4rem}
+.steps p{color:var(--on-ink-2);font-size:.98rem}
+.player{border-radius:16px;overflow:hidden;border:1px solid var(--line-ink);background:#000;max-width:360px;width:100%;margin-inline:auto;aspect-ratio:9/16}
+.player video{display:block;width:100%;height:100%;object-fit:cover}
+.player-cap{text-align:center;font-size:var(--fs-small);color:var(--on-ink-2);margin-top:.8rem}
+@media (max-width:860px){.proc{grid-template-columns:1fr}}
+
+/* entrega */
+.deliver{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+.sheet{position:relative;max-width:100%}
+.sheet img{display:block;width:100%;height:auto;border-radius:6px;box-shadow:0 30px 70px rgba(26,24,22,.28);transform:rotate(-1.6deg)}
+.sheet .tag{position:absolute;top:-.8rem;left:1rem;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;padding:.4rem .7rem;border-radius:4px}
+.gets{list-style:none;margin:1.8rem 0 0;padding:0;display:grid;gap:.9rem}
+.gets li{display:grid;grid-template-columns:2.2rem minmax(0,1fr);gap:.8rem;align-items:start}
+.gets .ck{width:2.2rem;height:2.2rem;border-radius:50%;border:1.5px solid var(--gold-deep);display:flex;align-items:center;justify-content:center}
+.gets b{font-weight:600}
+.gets span{display:block;color:var(--on-paper-2);font-size:.96rem}
+@media (max-width:860px){.deliver{grid-template-columns:1fr}.sheet{max-width:440px;margin-inline:auto}}
+
+/* contrato */
+.contract{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;margin-top:2.6rem}
+.doc{border-radius:10px;padding:1.6rem 1.6rem 1.4rem}
+.doc.theirs{background:var(--paper-3);border:1px solid var(--line-paper);font-family:'Times New Roman',Georgia,serif}
+.doc.ours{background:var(--ink);color:var(--on-ink);border:1.5px solid var(--gold)}
+.doc .label{margin-bottom:1rem}
+.doc.theirs .label{color:var(--on-paper-2)}
+.cl{display:flex;flex-direction:column;gap:.15rem;padding:.8rem 0;border-top:1px solid var(--line-paper)}
+.doc.ours .cl{border-top-color:var(--line-ink)}
+.cl:first-of-type{border-top:0}
+.cl s{text-decoration-color:var(--bad);text-decoration-thickness:2px;color:var(--on-paper)}
+.cl small{font-family:var(--sans);font-size:.85rem;color:var(--bad)}
+.doc.ours .cl b{font-size:1.15rem;font-weight:600;letter-spacing:-.015em}
+.doc.ours .cl small{color:var(--on-ink-2)}
+.fineprint{margin-top:2rem;display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem}
+.fineprint span{font-size:.72rem;color:var(--on-paper-2);font-family:var(--mono);letter-spacing:.06em}
+.fineprint b{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.04em;font-weight:600;color:var(--gold-deep)}
+@media (max-width:760px){.contract{grid-template-columns:1fr}}
+
+/* funil 120 */
+.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:2.4rem}
+.phase{border:1px solid var(--line-ink);border-radius:12px;padding:1.4rem;background:var(--ink-2)}
+.phase .label{display:block;margin-bottom:.7rem}
+.phase p{color:var(--on-ink-2);font-size:.96rem;margin-top:.5rem}
+.gate{margin-top:.8rem;display:flex;gap:.8rem;align-items:center;font-size:.95rem;color:var(--on-ink-2)}
+.gate b{color:var(--on-ink);font-weight:500}
+.guar{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1.2rem;align-items:center;margin-top:1.6rem;border-left:3px solid var(--gold);background:var(--ink-2);border-radius:0 12px 12px 0;padding:1.4rem 1.6rem}
+.guar p{font-size:1.08rem} .guar b{color:var(--gold);font-weight:600}
+.price{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:1.6rem}
+.price div{border-top:1px solid var(--line-ink);padding-top:1rem}
+.price span{display:block;font-size:.84rem;color:var(--on-ink-2)}
+.price b{display:block;font-size:1.5rem;letter-spacing:-.03em;font-weight:600;margin-top:.2rem}
+.price-note{margin-top:1rem;font-size:var(--fs-small);color:var(--on-ink-2)}
+@media (max-width:760px){.phases,.price{grid-template-columns:1fr}}
+
+/* perfil */
+.fit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;margin-top:2.4rem}
+.fit div{border-radius:12px;padding:1.5rem}
+.fit .yes{background:var(--paper-3);border:1px solid var(--line-paper)}
+.fit .no{border:1px dashed var(--line-paper)}
+.fit ul{margin:.8rem 0 0;padding-left:1.1rem;display:grid;gap:.45rem}
+@media (max-width:760px){.fit{grid-template-columns:1fr}}
+
+/* form */
+.formwrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,4rem);align-items:start}
+form{display:grid;gap:.9rem;background:var(--ink-2);border:1px solid var(--line-ink);border-radius:16px;padding:1.6rem}
+.f2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem}
+form label{display:flex;flex-direction:column;gap:.35rem;font-size:.84rem;color:var(--on-ink-2)}
+form input,form select{background:var(--ink-3);border:1px solid var(--line-ink);border-radius:6px;color:var(--on-ink);font:1rem var(--sans);padding:.75rem .8rem;min-height:3rem;width:100%;min-width:0}
+form .err{color:var(--bad);font-size:.84rem;min-height:1.2rem}
+.sent{background:var(--ink-3);border-radius:10px;padding:1rem;font-size:.95rem}
+.sent pre{white-space:pre-wrap;font:inherit;margin:.6rem 0 .8rem;color:var(--on-ink-2)}
+.phone{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:1.4rem;font-size:.95rem;color:var(--on-ink-2)}
+.phone b{font-family:var(--mono);color:var(--on-ink);font-weight:500;user-select:all}
+.phone button{background:none;border:1px solid var(--line-ink);color:var(--on-ink);border-radius:6px;padding:.35rem .7rem;font:.85rem var(--sans);cursor:pointer}
+@media (max-width:860px){.formwrap{grid-template-columns:1fr}}
+@media (max-width:480px){.f2{grid-template-columns:1fr}}
+
+/* faq */
+.faq{margin-top:2.2rem;display:grid;gap:0;max-width:52rem}
+details{border-top:1px solid var(--line-paper);padding:1.1rem 0}
+details:last-child{border-bottom:1px solid var(--line-paper)}
+summary{cursor:pointer;font-weight:600;font-size:1.12rem;letter-spacing:-.015em;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);color:var(--gold-deep)}
+details[open] summary::after{content:"–"}
+details p{margin-top:.7rem;color:var(--on-paper-2);max-width:44rem}
+
+/* final */
+.final{text-align:center}
+.final .big{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:clamp(3.4rem,10vw,7rem);font-weight:500;letter-spacing:-.05em;color:var(--gold);line-height:1;margin:1.2rem 0}
+.final h2{max-width:46rem;margin-inline:auto}
+.final .ctas{justify-content:center}
+footer{border-top:1px solid var(--line-ink);padding-block:2.4rem 3rem;font-size:var(--fs-small);color:var(--on-ink-2)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+
+/* whatsapp flutuante */
+.wa{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:55;display:flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--ink);border-radius:40px;padding:.75rem 1.1rem .75rem .85rem;font-weight:600;font-size:.92rem;text-decoration:none;box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.wa:hover{background:var(--gold-hi)}
+@media (max-width:480px){.wa span{display:none}.wa{padding:.85rem}}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><img src="assets/logo-fluxo.webp" alt="" width="32" height="32"><span>Fluxo Digital</span></a>
+    <div class="waitchip" aria-live="off"><span class="dot" aria-hidden="true"></span>Um cliente seu esperando há <b data-wait>00:00</b></div>
+    <a class="btn btn-gold" data-wa="topo" href="#" target="_blank" rel="noopener">Fazer o Teste 72h</a>
+  </div>
+</header>
+
+<main id="inicio">
+<section class="hero" aria-labelledby="h1">
+  <canvas id="flow" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <p class="label">Teste 72h · para empresas que já anunciam</p>
+      <h1 id="h1">Enquanto você lê esta página, <em>um cliente seu está esperando resposta.</em></h1>
+      <p class="lead">A maioria das empresas não perde venda no anúncio. Perde na conversa que vem depois. <b>A Fluxo vira seu cliente por 72 horas, mede o seu atendimento e te mostra em vídeo onde a venda escapa.</b> Antes de qualquer reunião. Sem custo.</p>
+      <div class="ctas">
+        <a class="btn btn-gold" data-wa="hero" href="#" target="_blank" rel="noopener">Quero o meu Teste 72h
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-line" data-wa="hero2" href="#" target="_blank" rel="noopener">Tirar uma dúvida no WhatsApp</a>
+      </div>
+      <p class="micro">Grátis para empresas a partir de R$ 50 mil por mês. Atendemos um número limitado de testes por mês.</p>
+    </div>
+    <div class="clock" role="img" aria-label="Cronômetro do tempo desde que você abriu a página">
+      <p class="label">Desde que você abriu esta página</p>
+      <div class="big" id="bigclock">00:00</div>
+      <p>É o tempo que uma pessoa leva para desistir de esperar e chamar o concorrente.</p>
+      <div class="bubble">Oi! Vi o anúncio de vocês. Quanto custa?<small>cliente novo · via anúncio</small></div>
+      <div class="status"><span class="dot" aria-hidden="true"></span><span id="status">SEM RESPOSTA</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip" aria-label="Sobre a Fluxo">
+  <div class="wrap">
+    <div><b class="mono">72 h</b><span>de cliente oculto no seu canal</span></div>
+    <div><b>3 fatores</b><span>tempo, script e follow-up</span></div>
+    <div><b class="mono">0–10</b><span>uma nota, medida antes e depois</span></div>
+    <div><b>R$ 0</b><span>pelo teste, para quem tem perfil</span></div>
+  </div>
+</div>
+
+<section class="band" id="desafio" aria-labelledby="h-dare">
+  <div class="wrap dare">
+    <div>
+      <p class="label">Antes de testar você, teste a gente</p>
+      <h2 id="h-dare">Mande uma mensagem para a Fluxo e <em>cronometre.</em></h2>
+      <p class="lead">Quem vai medir o seu atendimento precisa atender bem. Toque no botão, mande um oi no WhatsApp e deixe esta página aberta. Quando a gente responder, pare o cronômetro e veja a nota que a Fluxo tirou na mesma régua que vamos usar com você.</p>
+    </div>
+    <div class="stopwatch" aria-labelledby="sw-l">
+      <div class="row"><p class="label" id="sw-l">Cronômetro do desafio</p><span class="mono muted" id="sw-state">parado</span></div>
+      <div class="t" id="sw" role="timer" aria-live="off">00:00</div>
+      <div class="scale" aria-label="Régua do fator tempo">
+        <div data-s="10"><b>10</b>até 5 min</div><div data-s="7"><b>7</b>até 30 min</div><div data-s="4"><b>4</b>até 2 h</div><div data-s="0"><b>0</b>mais de 2 h</div>
+      </div>
+      <p class="msg" id="sw-msg">Em horário comercial, nossa meta é responder em até 5 minutos. Se passar disso, cobre a gente.</p>
+      <div class="actions">
+        <a class="btn btn-gold" id="sw-start" data-wa="desafio" href="#" target="_blank" rel="noopener">Mandar mensagem e cronometrar</a>
+        <button class="btn btn-line" id="sw-stop" type="button" hidden>A Fluxo respondeu</button>
+        <button class="btn btn-line" id="sw-reset" type="button" hidden>Zerar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band paper" id="nota" aria-labelledby="h-nota">
+  <div class="wrap">
+    <p class="label">Teste rápido · 30 segundos</p>
+    <h2 id="h-nota">Qual nota o seu atendimento tira?</h2>
+    <p class="lead muted" style="margin-top:1rem">Responda como acha que sua equipe responde hoje. A conta usa a mesma régua do Teste 72h. Já deixamos um exemplo preenchido.</p>
+    <div class="quiz">
+      <div class="qcol">
+        <fieldset class="fator" style="margin:0">
+          <legend class="sr" style="position:absolute;left:-9999px">Fator 1, tempo</legend>
+          <div class="hd"><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a15b" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Tempo</h3><span class="val" id="v1">4/10</span></div>
+          <p class="muted" style="font-size:.95rem;margin-bottom:.7rem">Quanto o cliente espera pela primeira resposta que faz a conversa andar?</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="tempo" id="t10" value="10"><span>Até 5 min</span></label>
+            <label class="opt"><input type="radio" name="tempo" id="t7" value="7"><span>Até 30 min</span></label>
+            <label class="opt"><input type="radio" name="tempo" id="t4" value="4" checked><span>Até 2 horas</span></label>
+            <label class="opt"><input type="radio" name="tempo" id="t0" value="0"><span>Mais que isso</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="fator" style="margin:0">
+          <legend style="position:absolute;left:-9999px">Fator 2, script</legend>
+          <div class="hd"><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a15b" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg></span><h3>Script</h3><span class="val" id="v2">4/10</span></div>
+          <div class="yn"><span>Pergunta o que o cliente precisa antes de falar em preço?</span><span class="seg"><label><input type="radio" name="s1" id="s1y" value="1"><span>Sim</span></label><label><input type="radio" name="s1" id="s1n" value="0" checked><span>Não</span></label></span></div>
+          <div class="yn"><span>Dá um motivo claro para escolher sua empresa?</span><span class="seg"><label><input type="radio" name="s2" id="s2y" value="1"><span>Sim</span></label><label><input type="radio" name="s2" id="s2n" value="0" checked><span>Não</span></label></span></div>
+          <div class="yn"><span>Propõe um próximo passo com data ou horário?</span><span class="seg"><label><input type="radio" name="s3" id="s3y" value="1" checked><span>Sim</span></label><label><input type="radio" name="s3" id="s3n" value="0"><span>Não</span></label></span></div>
+        </fieldset>
+        <fieldset class="fator" style="margin:0">
+          <legend style="position:absolute;left:-9999px">Fator 3, follow-up</legend>
+          <div class="hd"><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a15b" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 20v-4h-4"/></svg></span><h3>Follow-up</h3><span class="val" id="v3">0/10</span></div>
+          <p class="muted" style="font-size:.95rem;margin-bottom:.3rem">Depois que o cliente diz “vou ver e te retorno”…</p>
+          <div class="yn"><span>Alguém retoma a conversa em até 24 horas?</span><span class="seg"><label><input type="radio" name="f1" id="f1y" value="1"><span>Sim</span></label><label><input type="radio" name="f1" id="f1n" value="0" checked><span>Não</span></label></span></div>
+          <div class="yn"><span>Tenta de novo em até 72 horas?</span><span class="seg"><label><input type="radio" name="f2" id="f2y" value="1"><span>Sim</span></label><label><input type="radio" name="f2" id="f2n" value="0" checked><span>Não</span></label></span></div>
+          <div class="yn"><span>O retorno traz um motivo novo, e não só um “e aí?”</span><span class="seg"><label><input type="radio" name="f3" id="f3y" value="1"><span>Sim</span></label><label><input type="radio" name="f3" id="f3n" value="0" checked><span>Não</span></label></span></div>
+        </fieldset>
+      </div>
+      <aside class="result" aria-live="polite">
+        <p class="label">Sua nota estimada</p>
+        <svg viewBox="0 0 220 132" role="img" aria-label="Medidor da nota de 0 a 10">
+          <path d="M26 110 A84 84 0 0 1 109.2 26" fill="none" stroke="#b5503a" stroke-width="12"/>
+          <path d="M111.7 26 A84 84 0 0 1 177.2 59.5" fill="none" stroke="#b8862d" stroke-width="12"/>
+          <path d="M178.6 61.4 A84 84 0 0 1 194 110" fill="none" stroke="#5b8650" stroke-width="12"/>
+          <circle id="gdot" cx="26" cy="110" r="9" fill="#121110" stroke="#f4f1ea" stroke-width="3"/>
+          <text id="gnum" x="110" y="98" text-anchor="middle" font-family="General Sans, sans-serif" font-weight="600" font-size="44" fill="#f4f1ea">2,7</text>
+          <text x="110" y="120" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.5" fill="#a8a095">DE 10</text>
+        </svg>
+        <div style="text-align:center"><span class="leit" id="leit" style="background:#b5503a">Vazamento estrutural</span></div>
+        <div class="bars">
+          <div class="bar"><span>Tempo</span><i><b id="b1"></b></i><em id="e1">4</em></div>
+          <div class="bar"><span>Script</span><i><b id="b2"></b></i><em id="e2">4</em></div>
+          <div class="bar"><span>Follow-up</span><i><b id="b3"></b></i><em id="e3">0</em></div>
+        </div>
+        <div class="leak">
+          <p class="label" style="color:var(--on-ink-2)">Quanto isso pode custar por mês</p>
+          <div class="in">
+            <label for="lc">Contatos novos por mês<input id="lc" type="number" inputmode="numeric" min="0" step="10" value="150"></label>
+            <label for="lt">Ticket médio (R$)<input id="lt" type="number" inputmode="numeric" min="0" step="100" value="3000"></label>
+          </div>
+          <p class="out" id="leakout">R$ 13 mil a R$ 23 mil</p>
+          <small id="leaknote">Estimativa: contatos × perda no atendimento (20% a 35% para esta nota) × 15% de fechamento × ticket. No Teste 72h, trocamos as premissas pelos seus números.</small>
+        </div>
+        <a class="btn btn-gold" id="quizcta" data-wa="nota" href="#" target="_blank" rel="noopener">Quero a minha nota real</a>
+        <p class="fine">Essa é a nota que você acha que tem. O teste mostra a que seu cliente vive.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="como" aria-labelledby="h-como">
+  <div class="wrap">
+    <p class="label">Como funciona</p>
+    <h2 id="h-como">Você não precisa de reunião para descobrir onde perde venda.</h2>
+    <div class="proc">
+      <ol class="steps">
+        <li><span class="when">DIA 0</span><div><h3>Você pede o teste</h3><p>Pelo WhatsApp ou pelo formulário. Nosso assistente faz quatro perguntas para confirmar se o teste faz sentido para a sua empresa.</p></div></li>
+        <li><span class="when">DIA 0–1</span><div><h3>Você autoriza, sua equipe não sabe</h3><p>Só o dono ou sócio autoriza, por escrito. Já deixamos marcada a conversa de 30 minutos para ler o resultado.</p></div></li>
+        <li><span class="when">DIA 1–4</span><div><h3>Viramos seu cliente por 72 horas</h3><p>Alguém da Fluxo chama pelo seu canal como um cliente real e mede o tempo, o script e o follow-up. Também olhamos seu anúncio, o caminho até a conversa e sua reputação no Google.</p></div></li>
+        <li><span class="when">DIA 4–5</span><div><h3>Você recebe a nota e o vídeo</h3><p>Um vídeo de 3 a 4 minutos com a conversa, mensagem por mensagem, e um relatório de 1 página com a nota de 0 a 10 e o que corrigir primeiro.</p></div></li>
+      </ol>
+      <div>
+        <div class="player"><video controls playsinline preload="none" poster="media/teste72h-capa.jpg" aria-label="Vídeo: como funciona o Teste 72h"><source src="media/teste72h.mp4" type="video/mp4"></video></div>
+        <p class="player-cap">O Teste 72h em 56 segundos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band paper" id="entrega" aria-labelledby="h-entrega">
+  <div class="wrap deliver">
+    <figure class="sheet" style="margin:0">
+      <span class="tag">EXEMPLO ILUSTRATIVO · EMPRESA FICTÍCIA</span>
+      <img src="media/relatorio-exemplo.jpg" alt="Exemplo de relatório do Teste 72h de uma clínica fictícia, com nota de atendimento 1,3 de 10" width="992" height="1404">
+    </figure>
+    <div>
+      <p class="label">O que você recebe</p>
+      <h2 id="h-entrega">Uma página que mostra o que seu cliente vive. Sem curtidas e alcance.</h2>
+      <ul class="gets">
+        <li><span class="ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7a5c24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><div><b>A nota de atendimento, de 0 a 10</b><span>Tempo, script e follow-up, cada um com a sua nota.</span></div></li>
+        <li><span class="ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7a5c24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><div><b>O vídeo da conversa</b><span>Você vê, com horário, cada mensagem que o seu cliente recebeu ou deixou de receber.</span></div></li>
+        <li><span class="ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7a5c24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><div><b>Quanto isso pode custar por mês</b><span>A conta à vista, com as premissas escritas, para você conferir.</span></div></li>
+        <li><span class="ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7a5c24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><div><b>O que corrigir primeiro</b><span>Um achado por fator, mesmo que você nunca contrate a Fluxo.</span></div></li>
+      </ul>
+      <p class="muted" style="margin-top:1.6rem;font-size:.95rem">O relatório trata de processos, não de pessoas. Nenhum funcionário é exposto.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band paper" id="contrato" aria-labelledby="h-contrato" style="padding-top:0">
+  <div class="wrap">
+    <p class="label">As letras miúdas</p>
+    <h2 id="h-contrato">O contrato que quase ninguém lê. E o que a gente escreveu no lugar.</h2>
+    <div class="contract">
+      <div class="doc theirs">
+        <p class="label">Contrato padrão de mercado</p>
+        <div class="cl"><s>Vigência mínima de 12 meses, com renovação automática.</s><small>Você fica um ano, funcionando ou não.</small></div>
+        <div class="cl"><s>Multa de 30% sobre o saldo em caso de rescisão.</s><small>Para sair antes, você paga.</small></div>
+        <div class="cl"><s>Relatórios mensais de alcance, impressões e engajamento.</s><small>Você recebe curtidas, não vendas.</small></div>
+        <div class="cl"><s>A contratada não responde pelo atendimento dos contatos gerados.</s><small>Se não vender, a culpa é do seu comercial.</small></div>
+      </div>
+      <div class="doc ours">
+        <p class="label">Como a Fluxo trabalha</p>
+        <div class="cl"><b>120 dias, com começo, meio e fim.</b><small>Projeto com escopo fechado, não fidelidade de um ano.</small></div>
+        <div class="cl"><b>Depois, você fica só se melhorar.</b><small>Sem multa para sair.</small></div>
+        <div class="cl"><b>Nota antes e depois, com vídeo.</b><small>O mesmo teste mede o problema e a solução.</small></div>
+        <div class="cl"><b>Um responsável do anúncio ao fechamento.</b><small>Sem jogo de empurra entre marketing e comercial.</small></div>
+      </div>
+    </div>
+    <div class="fineprint"><span>E as nossas letras miúdas?</span><b>Não tem.</b></div>
+  </div>
+</section>
+
+<section class="band" id="funil" aria-labelledby="h-funil">
+  <div class="wrap">
+    <p class="label">Depois do teste, se fizer sentido</p>
+    <h2 id="h-funil">Funil 120: consertar, acelerar e provar.</h2>
+    <p class="lead muted" style="margin-top:1rem">Em 120 dias, a Fluxo monta o funil inteiro, do anúncio ao fechamento, numa ordem que não desperdiça verba.</p>
+    <div class="phases">
+      <div class="phase"><span class="label">Semanas 1–7 · Consertar</span><h3>O que acontece depois do clique</h3><p>CRM, agente de IA no WhatsApp, roteiro comercial, follow-up automático e treinamento da equipe.</p></div>
+      <div class="phase"><span class="label">Semanas 6–15 · Acelerar</span><h3>O que acontece antes do clique</h3><p>Oferta, criativos, página e tráfego pago. A verba só cresce quando o atendimento está pronto.</p></div>
+      <div class="phase"><span class="label">Semanas 16–17 · Provar</span><h3>O reteste</h3><p>Refazemos o Teste 72h em duas datas sorteadas, com o mesmo roteiro. Você compara a nota de antes com a de depois.</p></div>
+    </div>
+    <div class="guar">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#c8a15b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-3 7.6-7 9-4-1.4-7-4.8-7-9V6l7-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+      <p>Se no reteste a nota não chegar a <b>7,5</b> ou não subir <b>4 pontos</b>, a Fluxo trabalha <b>mais 30 dias sem custo</b> até chegar lá.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band paper" id="perfil" aria-labelledby="h-perfil">
+  <div class="wrap">
+    <p class="label">Antes de pedir</p>
+    <h2 id="h-perfil">O teste não é para todo mundo.</h2>
+    <div class="fit">
+      <div class="yes"><h3>Faz sentido se</h3><ul><li>Sua empresa fatura a partir de R$ 50 mil por mês.</li><li>Seus clientes chegam pelo WhatsApp ou pelo telefone.</li><li>Você já investe, ou já investiu, em anúncios.</li><li>Você quer ver os números, inclusive os que incomodam.</li></ul></div>
+      <div class="no"><h3>Não faz sentido se</h3><ul><li>Você está começando agora e ainda não tem vendas.</li><li>Você procura a agência mais barata.</li><li>Você quer resultado sem mudar nada no atendimento.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="pedir" aria-labelledby="h-pedir">
+  <div class="wrap formwrap">
+    <div>
+      <p class="label">Pedir o Teste 72h</p>
+      <h2 id="h-pedir">Quatro respostas e a gente começa.</h2>
+      <p class="lead muted" style="margin-top:1rem">Preencha e abrimos o WhatsApp com a sua mensagem pronta. Do outro lado, nosso assistente responde na hora e confirma o perfil. Depois, você fala com uma pessoa da Fluxo.</p>
+      <div class="phone">Prefere chamar direto? <b id="num">(21) 99255-5777</b><button type="button" id="copy">Copiar número</button><span id="copied" class="muted" aria-live="polite"></span></div>
+    </div>
+    <form id="form" novalidate>
+      <div class="f2">
+        <label for="fn">Seu nome<input id="fn" name="nome" autocomplete="given-name" required></label>
+        <label for="fe">Empresa<input id="fe" name="empresa" autocomplete="organization" required></label>
+      </div>
+      <label for="ff">Faturamento mensal
+        <select id="ff" name="fat" required>
+          <option value="">Selecione</option><option>Até R$ 50 mil</option><option>R$ 50 mil a R$ 150 mil</option><option>R$ 150 mil a R$ 500 mil</option><option>Acima de R$ 500 mil</option>
+        </select></label>
+      <div class="f2">
+        <label for="fc">Onde o cliente chama primeiro
+          <select id="fc" name="canal" required><option value="">Selecione</option><option>WhatsApp</option><option>Telefone</option><option>Formulário ou e-mail</option></select></label>
+        <label for="fd">Maior incômodo hoje
+          <select id="fd" name="dor" required><option value="">Selecione</option><option>Chegam contatos, mas pouca venda</option><option>Não sei onde perco clientes</option><option>Já troquei de agência e nada mudou</option><option>Quero crescer com previsibilidade</option></select></label>
+      </div>
+      <p class="err" id="ferr" role="alert"></p>
+      <a class="btn btn-gold" id="sendlink" href="#" target="_blank" rel="noopener">Enviar resumo pelo WhatsApp
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="muted" style="font-size:.84rem;margin:0">Suas respostas vão resumidas na mensagem. É só tocar em enviar no WhatsApp.</p>
+    </form>
+  </div>
+</section>
+
+<section class="band paper" id="duvidas" aria-labelledby="h-faq">
+  <div class="wrap">
+    <p class="label">Perguntas que todo empresário faz</p>
+    <h2 id="h-faq">Antes de você perguntar.</h2>
+    <div class="faq">
+      <details><summary>É grátis mesmo? Qual é a pegadinha?</summary><p>É grátis para empresas dentro do perfil. A gente aposta que, depois de ver o vídeo, você vai querer corrigir o que encontrou, com a Fluxo ou não. O relatório é seu de qualquer forma.</p></details>
+      <details><summary>Minha equipe vai saber do teste?</summary><p>Não. Só o dono ou sócio autoriza, por escrito. Não ocupamos horários reais, não deixamos avaliações públicas e o relatório fala de processos, nunca de pessoas.</p></details>
+      <details><summary>Já tenho agência. Faz sentido?</summary><p>Faz. Muitas vezes o anúncio funciona e a venda se perde no atendimento, que a agência não acompanha. O teste mostra onde está o problema, e você decide o que fazer com isso.</p></details>
+      <details><summary>Vocês garantem resultado?</summary><p>Garantimos o que controlamos: a melhora da nota de atendimento, medida pelo mesmo teste. Faturamento depende de preço, produto e da equipe que fecha a venda, então medimos e mostramos toda semana, mas não prometemos.</p></details>
+      <details><summary>Por que 120 dias e não 12 meses?</summary><p>Porque primeiro consertamos o atendimento e só depois aceleramos os anúncios. Em 120 dias dá para fazer os dois e provar com o reteste. Depois disso, você continua só se valer a pena.</p></details>
+      <details><summary>E se minha empresa não estiver no perfil?</summary><p>A gente diz isso com clareza e indica o que faz mais sentido para o seu momento. Não vale a pena para ninguém começar um projeto que não vai se pagar.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="band final" aria-labelledby="h-final">
+  <div class="wrap">
+    <p class="label">Você está nesta página há</p>
+    <div class="big" id="finalclock">00:00</div>
+    <h2 id="h-final">Seu cliente esperou quanto tempo hoje?</h2>
+    <p class="lead muted" style="margin:1.2rem auto 0">Em 72 horas, você descobre. Sem reunião, sem custo e sem contrato.</p>
+    <div class="ctas"><a class="btn btn-gold" data-wa="final" href="#" target="_blank" rel="noopener">Quero o meu Teste 72h</a></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Fluxo Digital · Daniel Varela, fundador · 227 empresas atendidas · 10 anos de mercado</span>
+    <span>agenciafluxodigital.com · (21) 99255-5777</span>
+  </div>
+</footer>
+
+<a class="wa" data-wa="flutuante" href="#" target="_blank" rel="noopener" aria-label="Falar com a Fluxo no WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.7c-2 0-4-.5-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7Zm5.9-8c-.3-.2-1.9-1-2.2-1-.3-.2-.5-.2-.7.1l-1 1.3c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.7 5 2.1 1 3 1 4 .8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.6-.3Z"/></svg><span>Falar agora</span></a>
+
+<script>
+(function(){
+  var WA = '5521992555777';
+  var msgs = {
+    topo: 'Olá! Vim pelo site e quero fazer o Teste 72h.',
+    hero: 'Olá! Vim pelo site e quero fazer o Teste 72h.',
+    desafio: 'Oi, Fluxo! Estou fazendo o desafio do cronômetro. Quero entender o Teste 72h.',
+    final: 'Olá! Vim pelo site e quero fazer o Teste 72h.',
+    hero2: 'Olá! Vim pelo site e tenho uma dúvida sobre o Teste 72h.',
+    flutuante: 'Olá! Vim pelo site e quero saber mais sobre o Teste 72h.'
+  };
+  function waUrl(t){ return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t); }
+  document.querySelectorAll('[data-wa]').forEach(function(a){ var k=a.getAttribute('data-wa'); if(msgs[k]) a.href = waUrl(msgs[k]); });
+
+  /* relógios da página */
+  var t0 = Date.now();
+  function fmt(s){ var h=Math.floor(s/3600), m=Math.floor(s%3600/60), x=s%60; var mm=String(m).padStart(2,'0'), ss=String(x).padStart(2,'0'); return h? String(h).padStart(2,'0')+':'+mm+':'+ss : mm+':'+ss; }
+  var big=document.getElementById('bigclock'), fin=document.getElementById('finalclock'), st=document.getElementById('status'), waits=document.querySelectorAll('[data-wait]');
+  function tick(){
+    var s=Math.floor((Date.now()-t0)/1000), f=fmt(s);
+    big.textContent=f; fin.textContent=f; waits.forEach(function(w){w.textContent=f;});
+    big.classList.toggle('late', s>=30);
+    st.textContent = s<30 ? 'SEM RESPOSTA' : (s<90 ? 'SEM RESPOSTA · O CLIENTE JÁ ABRIU OUTRA CONVERSA' : 'SEM RESPOSTA · O CLIENTE FECHOU COM OUTRA EMPRESA');
+  }
+  tick(); setInterval(tick,1000);
+
+  /* desafio do cronômetro */
+  var KEY='fluxo-desafio-start', swStart=null, swEnd=null, swTimer=null;
+  var sw=document.getElementById('sw'), swState=document.getElementById('sw-state'), swMsg=document.getElementById('sw-msg');
+  var bStart=document.getElementById('sw-start'), bStop=document.getElementById('sw-stop'), bReset=document.getElementById('sw-reset');
+  function score(min){ return min<=5?10:(min<=30?7:(min<=120?4:0)); }
+  function paint(){
+    var end=swEnd||Date.now(); var s=swStart?Math.floor((end-swStart)/1000):0;
+    sw.textContent=fmt(s);
+    var sc=score(s/60);
+    document.querySelectorAll('.scale div').forEach(function(d){ d.classList.toggle('on', !!swStart && Number(d.dataset.s)===sc); });
+  }
+  function run(){ clearInterval(swTimer); swTimer=setInterval(paint,500); paint(); }
+  try{ var saved=Number(localStorage.getItem(KEY)); if(saved && Date.now()-saved<86400000){ swStart=saved; } }catch(e){}
+  if(swStart){ bStop.hidden=false; bReset.hidden=false; swState.textContent='correndo'; swMsg.textContent='O cronômetro está correndo. Quando a Fluxo responder, toque em “A Fluxo respondeu”.'; run(); }
+  bStart.addEventListener('click',function(){
+    if(!swStart){ swStart=Date.now(); swEnd=null; try{localStorage.setItem(KEY,String(swStart));}catch(e){} }
+    bStop.hidden=false; bReset.hidden=false; swState.textContent='correndo';
+    swMsg.textContent='Mensagem pronta no WhatsApp. Envie e volte aqui. Quando a Fluxo responder, toque em “A Fluxo respondeu”.';
+    run();
+  });
+  bStop.addEventListener('click',function(){
+    if(!swStart) return; swEnd=Date.now(); clearInterval(swTimer); paint();
+    var s=Math.floor((swEnd-swStart)/1000), sc=score(s/60);
+    swState.textContent='parado';
+    swMsg.textContent = sc===10 ? ('A Fluxo respondeu em '+fmt(s)+'. Nota de tempo: 10. Agora é a sua vez de ser testado.') : ('A Fluxo levou '+fmt(s)+'. Nota de tempo: '+sc+'. Passou da nossa meta de 5 minutos: cobre a gente na conversa.');
+    try{localStorage.removeItem(KEY);}catch(e){}
+  });
+  bReset.addEventListener('click',function(){ swStart=null; swEnd=null; clearInterval(swTimer); paint(); bStop.hidden=true; bReset.hidden=true; swState.textContent='parado'; swMsg.textContent='Em horário comercial, nossa meta é responder em até 5 minutos. Se passar disso, cobre a gente.'; try{localStorage.removeItem(KEY);}catch(e){} });
+
+  /* teste rápido */
+  var RED='#b5503a', AMB='#b8862d', GRN='#5b8650';
+  function val(n){ var el=document.querySelector('input[name="'+n+'"]:checked'); return el?Number(el.value):0; }
+  function rule(c){ return [0,4,7,10][c]; }
+  function band(v){ return v<5?['Vazamento estrutural',RED]:(v<8?['Falhas pontuais',AMB]:['Processo maduro',GRN]); }
+  function money(v){ if(v>=1000) return 'R$ '+Math.round(v/1000).toLocaleString('pt-BR')+' mil'; return 'R$ '+Math.round(v).toLocaleString('pt-BR'); }
+  function quiz(){
+    var f1=val('tempo'), f2=rule(val('s1')+val('s2')+val('s3')), f3=rule(val('f1')+val('f2')+val('f3'));
+    var nota=Math.round((f1+f2+f3)/3*10)/10;
+    [[f1,'b1','e1','v1'],[f2,'b2','e2','v2'],[f3,'b3','e3','v3']].forEach(function(r){
+      var b=document.getElementById(r[1]); b.style.width=(r[0]*10)+'%'; b.style.background=band(r[0])[1];
+      document.getElementById(r[2]).textContent=r[0]; document.getElementById(r[3]).textContent=r[0]+'/10';
+    });
+    var a=Math.PI*(1-nota/10); document.getElementById('gdot').setAttribute('cx',(110+84*Math.cos(a)).toFixed(1)); document.getElementById('gdot').setAttribute('cy',(110-84*Math.sin(a)).toFixed(1));
+    var nt=nota.toFixed(1).replace('.',','); document.getElementById('gnum').textContent=nt;
+    var bd=band(nota), l=document.getElementById('leit'); l.textContent=bd[0]; l.style.background=bd[1];
+    var lo=nota<5?.20:(nota<8?.10:.05), hi=nota<5?.35:(nota<8?.20:.10);
+    var c=Math.max(0,Number(document.getElementById('lc').value)||0), t=Math.max(0,Number(document.getElementById('lt').value)||0);
+    var v1=c*lo*.15*t, v2=c*hi*.15*t;
+    document.getElementById('leakout').textContent = (c&&t) ? (money(v1)+' a '+money(v2)) : 'Preencha os dois campos';
+    document.getElementById('leaknote').textContent='Estimativa: contatos × perda no atendimento ('+Math.round(lo*100)+'% a '+Math.round(hi*100)+'% para esta nota) × 15% de fechamento × ticket. No Teste 72h, trocamos as premissas pelos seus números.';
+    document.getElementById('quizcta').href=waUrl('Olá! Fiz o teste rápido no site e minha nota estimada foi '+nt+' de 10 (tempo '+f1+', script '+f2+', follow-up '+f3+'). Quero o Teste 72h para saber a nota real.');
+  }
+  document.querySelectorAll('#nota input').forEach(function(i){ i.addEventListener('input',quiz); i.addEventListener('change',quiz); });
+  quiz();
+
+  /* formulário -> mensagem de WhatsApp */
+  var form=document.getElementById('form'), send=document.getElementById('sendlink'), ferr=document.getElementById('ferr');
+  var FIELDS=[['fn','seu nome'],['fe','a empresa'],['ff','o faturamento'],['fc','onde o cliente chama primeiro'],['fd','o maior incômodo']];
+  function missing(){ return FIELDS.filter(function(p){ return !document.getElementById(p[0]).value.trim(); }).map(function(p){ return p[1]; }); }
+  function summary(){
+    var v=function(id){ return document.getElementById(id).value.trim(); };
+    return 'Olá! Quero fazer o Teste 72h. Seguem minhas respostas:\n'+
+      '• Nome: '+v('fn')+'\n• Empresa: '+v('fe')+'\n• Faturamento mensal: '+v('ff')+'\n• Onde o cliente chama primeiro: '+v('fc')+'\n• Maior incômodo hoje: '+v('fd');
+  }
+  function syncSend(){ send.href=waUrl(summary()); if(!missing().length) ferr.textContent=''; }
+  form.querySelectorAll('input,select').forEach(function(el){ el.addEventListener('input',syncSend); el.addEventListener('change',syncSend); });
+  syncSend();
+  send.addEventListener('click',function(e){
+    var miss=missing();
+    if(miss.length){ e.preventDefault(); ferr.textContent='Falta preencher: '+miss.join(', ')+'.'; return; }
+    send.href=waUrl(summary());
+  });
+  form.addEventListener('submit',function(e){ e.preventDefault(); var miss=missing(); ferr.textContent = miss.length ? 'Falta preencher: '+miss.join(', ')+'.' : 'Tudo certo. Toque em “Enviar resumo pelo WhatsApp”.'; });
+
+  /* copiar número */
+  document.getElementById('copy').addEventListener('click',function(){
+    var out=document.getElementById('copied');
+    var p=navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText('+55 21 99255-5777'):Promise.reject();
+    p.then(function(){out.textContent='Copiado.';},function(){ var r=document.createRange(); r.selectNodeContents(document.getElementById('num')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); out.textContent='Selecionado. Use Ctrl+C.'; });
+  });
+
+  /* linhas de fluxo do hero */
+  var cv=document.getElementById('flow'), cx=cv.getContext('2d'), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){ var d=Math.min(devicePixelRatio||1,2), r=cv.getBoundingClientRect(); cv.width=r.width*d; cv.height=r.height*d; cx.setTransform(d,0,0,d,0,0); }
+  function draw(t){
+    var w=cv.clientWidth, h=cv.clientHeight; cx.clearRect(0,0,w,h); cx.lineWidth=1;
+    for(var i=0;i<14;i++){ var lane=-1+2*i/13; cx.beginPath();
+      for(var s=0;s<=60;s++){ var x=s/60, k=Math.min(1,x/.62), sm=k*k*(3-2*k), sp=x<=.62?.14+.86*(1-sm):.14+.26*Math.pow((x-.62)/.38,2);
+        var y=.5+lane*sp*.42+Math.sin(x*6+i*.6+t*.0006)*.012*sp; s?cx.lineTo(x*w,y*h):cx.moveTo(x*w,y*h); }
+      cx.strokeStyle='rgba(200,161,91,'+(.07+.04*Math.sin(i+t*.001)).toFixed(3)+')'; cx.stroke(); }
+    if(!reduce) requestAnimationFrame(draw);
+  }
+  size(); addEventListener('resize',size); requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>
